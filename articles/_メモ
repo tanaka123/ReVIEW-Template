@@ -1,0 +1,11 @@
+〇PDF出力するとき
+・ルートディレクトリに行く
+・下記を実行
+  ./build-in-docker.sh
+
+catalog.ymlが全体を構成するファイルっぽい。
+
+ソースコードを埋め込むときのやつ
+※cd articles/ を実行していること
+Dokerに潜り込んで「"cd /book/ && review-preproc article.re"」を実行する。
+docker run -t --rm -v $(pwd):/book vvakame/review:5.8 /bin/bash -ci "cd /book/ && review-preproc article.re"
