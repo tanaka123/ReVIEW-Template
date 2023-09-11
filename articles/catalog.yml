@@ -1,7 +1,10 @@
+#これが全体を構成するファイルっぽい
+
 PREDEF:
   - preface.re
 
 CHAPS:
+  - article.re
   - article.re
 
 APPENDIX:

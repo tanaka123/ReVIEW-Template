@@ -1,4 +1,5 @@
 = 著者紹介
 
-==== 第1章 ひつじ / @mhidaka
-ひつじだよ〜
+==== AnoGame / @game_tkr
+PieceWatsというゲームを作ってます。
+
