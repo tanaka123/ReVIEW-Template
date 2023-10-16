@@ -6,7 +6,7 @@
 
 # この設定ファイルでサポートするRe:VIEWのバージョン番号。
 # major versionが違うときにはエラーを出す。
-review_version: 5.0
+review_version: 5.8
 
 # ほかの設定ファイルの継承を指定できる。同じパラメータに異なる値がある場合は、
 # 呼び出し元の値が優先される。
@@ -22,7 +22,7 @@ bookname: Book-PlayerLink
 language: ja
 
 # 書名
-booktitle: {name: "Unityでオンライン機能を実装しよう！", file-as: "Unityでオンライン機能を実装しよう"}
+booktitle: {name: "オンラインゲームの作り方！", file-as: "オンラインゲームの作り方"}
 
 # 著者名。「, 」で区切って複数指定できる
 aut: [{name: "AnoGame", file-as: "AnoGame"}]
@@ -174,9 +174,9 @@ colophon: true
 # font_ext: ["ttf", "woff", "otf"]
 
 # ソースコードハイライトを利用する (rouge,pygmentsには外部gemが必要)
-# highlight:
-#   html: "rouge"
-#   latex: "listings"
+highlight:
+  html: "rouge"
+  latex: "listings"
 
 # カタログファイル名を指定する
 # catalogfile: catalog.yml
@@ -487,4 +487,4 @@ techbooster:
   # texdocumentclassでcover_fit_page=trueを付けるのと同じ
   # cover_fit_page: true
   # 裏表紙画像指定。画像はimages/から探索される
-  # backcoverimage: backcover.jpg
+  backcoverimage: backcover.jpg

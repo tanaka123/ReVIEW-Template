@@ -9,3 +9,20 @@ catalog.ymlが全体を構成するファイルっぽい。
 ※cd articles/ を実行していること
 Dokerに潜り込んで「"cd /book/ && review-preproc article.re"」を実行する。
 docker run -t --rm -v $(pwd):/book vvakame/review:5.8 /bin/bash -ci "cd /book/ && review-preproc article.re"
+
+
+
+oota@DESKTOP-V16NNAG:/mnt/d/GitHub/_Book/PlayersLink/ReVIEW-Template$
+
+
+〇やること
+・前書きを書く
+
+
+
+・カバーを完成させる
+・レビュー依頼
+
+
+・著者紹介-見直し
+・
