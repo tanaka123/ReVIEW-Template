@@ -4,8 +4,8 @@ PREDEF:
   - preface.re
 
 CHAPS:
-  - article.re
-  - article.re
+  - 1_1_1.article.re
+
 
 APPENDIX:
 
