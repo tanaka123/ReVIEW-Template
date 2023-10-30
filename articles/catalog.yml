@@ -4,7 +4,13 @@ PREDEF:
   - preface.re
 
 CHAPS:
-  - 1_1_1.article.re
+  - 1_1_1.article_prologue.re
+  - 2_1_1.article_lobby.re
+  - 3_1_1.article_relay.re
+  - 2_1_1.article_lobby.re
+  - 3_1_1.article_relay.re
+  - 4_1_1.article_matchmaking.re
+  - 5_1_1.article_ending.re
 
 
 APPENDIX:

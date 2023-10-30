@@ -10,10 +10,10 @@ catalog.ymlが全体を構成するファイルっぽい。
 Dokerに潜り込んで「"cd /book/ && review-preproc article.re"」を実行する。
 docker run -t --rm -v $(pwd):/book vvakame/review:5.8 /bin/bash -ci "cd /book/ && review-preproc article.re"
 
+↓これをやる
 
-
-oota@DESKTOP-V16NNAG:/mnt/d/GitHub/_Book/PlayersLink/ReVIEW-Template$
-
+/mnt/d/GitHub/_Book/PlayersLink/ReVIEW-Template/build-in-docker.sh
+docker run -t --rm -v $(pwd):/book vvakame/review:5.8 /bin/bash -ci "cd /book/ && review-preproc article.re"
 
 〇やること
 ・前書きを書く
