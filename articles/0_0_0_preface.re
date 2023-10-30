@@ -21,7 +21,7 @@ UnityからUnity Gaming Servicies(以下、UGS)というサービスが提供さ
 ↓前書きで載せる情報ではない。
 
 
-//image[1_1_1_lobby][図の表示]{
+//image[2_1_1_lobby][図の表示]{
   図の表示
 //}
 

@@ -1,19 +1,28 @@
 #これが全体を構成するファイルっぽい
 
 PREDEF:
-  - preface.re
+  # 前書き
+  # TODO:画像の差し替え必要。というか、いらないので消してもいいかも
+  - 0_0_0_preface.re
 
 CHAPS:
+  # プロローグ
   - 1_1_1.article_prologue.re
+
+  # Lobbyについて
   - 2_1_1.article_lobby.re
+
+  # Relayについて
   - 3_1_1.article_relay.re
-  - 2_1_1.article_lobby.re
-  - 3_1_1.article_relay.re
+
+  # マッチメイキングについて
   - 4_1_1.article_matchmaking.re
+
+  # 最後に
   - 5_1_1.article_ending.re
 
 
 APPENDIX:
 
 POSTDEF:
-  - contributors.re
+  - 99_contributors.re
