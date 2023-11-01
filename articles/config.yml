@@ -22,7 +22,7 @@ bookname: Book-PlayerLink
 language: ja
 
 # 書名
-booktitle: {name: "オンラインゲームの作り方！", file-as: "オンラインゲームの作り方"}
+booktitle: {name: "オンラインゲームの作り方", file-as: "オンラインゲームの作り方"}
 
 # 著者名。「, 」で区切って複数指定できる
 aut: [{name: "AnoGame", file-as: "AnoGame"}]

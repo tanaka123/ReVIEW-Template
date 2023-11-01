@@ -15,14 +15,11 @@ docker run -t --rm -v $(pwd):/book vvakame/review:5.8 /bin/bash -ci "cd /book/ &
 /mnt/d/GitHub/_Book/PlayersLink/ReVIEW-Template/build-in-docker.sh
 docker run -t --rm -v $(pwd):/book vvakame/review:5.8 /bin/bash -ci "cd /book/ && review-preproc article.re"
 
-〇やること
-・前書きを書く
 
 
 
-・カバーを完成させる
-・レビュー依頼
-
-
-・著者紹介-見直し
-・
+###
+PDF化するときは、下記の置換を行う
+#@#@<dtp>
+↓
+@<dtp>
