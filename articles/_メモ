@@ -5,7 +5,6 @@
 
 catalog.ymlが全体を構成するファイルっぽい。
 
-ソースコードを埋め込むときのやつ
 ※cd articles/ を実行していること
 Dokerに潜り込んで「"cd /book/ && review-preproc article.re"」を実行する。
 docker run -t --rm -v $(pwd):/book vvakame/review:5.8 /bin/bash -ci "cd /book/ && review-preproc article.re"
@@ -23,3 +22,32 @@ PDF化するときは、下記の置換を行う
 #@#@<dtp>
 ↓
 @<dtp>
+
+〇改行
+@<embed>{|latex|\pagebreak }
+
+
+〇コード引用
+//list[aAuthentication_sample][認証処理サンプル][C]{
+
+public class AuthenticationManager
+{
+  public  async Task SignInAnonymouslyAsync()
+  {
+      await AuthenticationService.Instance.SignInAnonymouslyAsync();
+  }
+}
+//}
+
+
+//list[lobby_player_data_write_sample][ロビー参加サンプル][C]{
+public class LobbySample
+{
+  public string GetJoinCode()
+  {
+    var lobby = await Lobbies.Instance.GetLobbyAsync(lobbyId);
+    var joinCode = lobby.Data["JoinCode"].Value;
+    return joinCode;
+  }
+}
+//}
