@@ -231,23 +231,63 @@ public class LobbySample
 == PlayerData
 Lobbyには、LobbyDataの他にPlayersというプロパティがあります。
 このPlayersはPlayerクラスのリストとなっており、PlayerにもDataを保持しておくことができます。
-下記はPlayerDataへのアクセス方法です。
+下記はPlayerDataへの書き込み方法です。
 
 //emlist[PlayerData書き込み][C]{
 public class LobbySample
 {
   public void CheckPlayerData()
+  private async Task WriteConnectionTimestamp(Lobby lobby, string playerId)
   {
-    foreach (var lobbyPlayer in lobby.Players)
-    {
-      var ConnectionTimestamp =  lobbyPlayer.Data["ConnectionTimestamp"].Value;
-      var ready =  lobbyPlayer.Data["Ready"].Value;
+      var playerData = GetPlayersData(lobby, playerId);
+      if (playerData != null)
+      {
+        // タイムスタンプデータがあれば削除
+        if (playerData.ContainsKey(LobbyConstants.ConnectionTimestamp))
+        {
+          playerData.Remove(LobbyConstants.ConnectionTimestamp);
+        }
 
-      // ...中略...
+        // 現時刻のタイムスタンプを取得する
+        string nowTimeStamp = DateTime.Now.ToString(LobbyConstants.ConnectionTimestampFormat);
+
+        // プレイヤーデータに接続タイムスタンプを追加
+        playerData.Add(LobbyConstants.ConnectionTimestamp, new PlayerDataObject(PlayerDataObject.VisibilityOptions.Public, nowTimeStamp));
+
+      }
+
+      // アップデートプレイヤーオプションを作成
+      var updatePlayerOptions = new UpdatePlayerOptions()
+      {
+        Data = playerData
+      };
+
+      // プレイヤーデータをアップデートする
+      await Lobbies.Instance.UpdatePlayerAsync(lobby.Id, playerId, updatePlayerOptions);  
+  }
+
+  private  Dictionary<string, PlayerDataObject> GetPlayersData(Lobby lobby, string playerId)
+  {
+    var player = lobby.Players.FirstOrDefault(x => x.Id == playerId);
+    if (player.Data != null)
+    {
+      return player.Data;
+    }
+    else
+    {
+      return null;
     }
   }
 }
 //}
+
+PlayersLinkではプレイヤーのタイムスタンプ情報をやり取りすることで疎通確認できるようするため、
+上記の様なタイムスタンプの書き込み処理を行っています。(この背景などについては後述します。)
+LobbyのPlayersの中から書き込み対象のプレイヤーIDを指定してDataを得るため、GetPlayersDataメソッドの処理を行っています。
+コードが長くなっていますが、重複したデータを登録しない様に制御しています。
+最終的にUpdatePlayerAsyncでロビーIDとプレイヤーIDを指定して、UpdatePlayerOptionsを更新するという流れです。
+
+次に、下記はPlayerDataの読み込み方法です。
 
 //emlist[PlayerData読み込み][C]{
 public class LobbySample
@@ -257,7 +297,6 @@ public class LobbySample
     foreach (var lobbyPlayer in lobby.Players)
     {
       var ConnectionTimestamp =  lobbyPlayer.Data["ConnectionTimestamp"].Value;
-      var ready =  lobbyPlayer.Data["Ready"].Value;
 
       // ...中略...
     }
@@ -265,8 +304,7 @@ public class LobbySample
 }
 //}
 
-上記は、PlayersLinkでも実際に行っている処理です。
-純粋なLobby機能だけではどうにも痒いところに手が届かない部分が多いです。
-そのため、
+このあたりはLobbyDataとやることはほとんど一緒でPlayersのDataにアクセスするだけです。
+
 
 

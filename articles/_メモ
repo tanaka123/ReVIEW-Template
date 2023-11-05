@@ -17,18 +17,15 @@ docker run -t --rm -v $(pwd):/book vvakame/review:5.8 /bin/bash -ci "cd /book/ &
 
 
 
-###
-PDF化するときは、下記の置換を行う
-#@#@<dtp>
-↓
-@<dtp>
+〇コメントアウト
+#@#
 
 〇改行
 @<embed>{|latex|\pagebreak }
 
 
 〇コード引用
-//list[aAuthentication_sample][認証処理サンプル][C]{
+//list[authentication_sample][認証処理サンプル][C]{
 
 public class AuthenticationManager
 {

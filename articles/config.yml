@@ -47,7 +47,7 @@ aut: [{name: "AnoGame", file-as: "AnoGame"}]
 # a-csl, csl: 監修者
 # a-dsr, dsr: デザイナ
 # a-edt, edt: 編集者
-edt: ["AnoGame"]
+edt: ["AnoGame_"]
 # a-ill, ill: イラストレータ
 # a-lyr, lyr: 歌詞作成者
 # a-mdc, mdc: メタデータセットの一次的責任者
@@ -56,7 +56,7 @@ edt: ["AnoGame"]
 # a-oth, oth: その他
 # a-pht, pht: 撮影責任者
 # a-pbl, pbl: 出版社（発行所）
-pbl: AnoGame
+pbl: AnoGame Studio
 # a-prt, prt: 印刷所
 # prt: TechBooster
 # a-red, red: 項目の枠組起草者
@@ -198,11 +198,12 @@ highlight:
 
 # 図・表・コードリスト・数式のキャプション位置。
 # 値はtop（上）またはbottom（下）でデフォルトは以下のとおり
-# caption_position:
-#   image: bottom
-#   table: top
-#   list: top
-#   equation: top
+caption_position:
+  image: bottom
+  table: bottom
+  list: bottom
+  emlist: bottom
+  equation: bottom
 
 # review-toc向けのヒント情報
 # (文字幅を考慮した行数計測には、別途unicode-eaw gemファイルが必要)
