@@ -229,10 +229,11 @@ public class LobbySample
 
 ===[/column]
 
+@<embed>{|latex|\pagebreak }
 == PlayerData
 Lobbyには、LobbyDataの他にPlayersというプロパティがあります。
 このPlayersはPlayerクラスのリストとなっており、PlayerにもDataを保持しておくことができます。
-下記はPlayerDataへの書き込み方法です。
+下記はPlayerDataへの書き込む方法です。
 
 //emlist[][C]{
 public class LobbySample
@@ -288,7 +289,7 @@ LobbyのPlayersの中から書き込み対象のプレイヤーIDを指定して
 コードが長くなっていますが、重複したデータを登録しない様に制御しています。
 最終的にUpdatePlayerAsyncでロビーIDとプレイヤーIDを指定して、UpdatePlayerOptionsを更新するという流れです。
 
-次に、下記はPlayerDataの読み込み方法です。
+次に、下記はPlayerDataの読み込む方法です。
 
 //emlist[][C]{
 public class LobbySample
