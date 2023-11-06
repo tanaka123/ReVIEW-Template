@@ -2,12 +2,12 @@
 この章ではLobby機能について実際のコードを見ながら説明していきます。
 
 == 認証
-先にRelayと共通で実施することになる認証処理についても見ていきます。
+先にLobbyとRelayを使用する際に共通で実行することになる認証処理についても見ていきます。
 
-=== 認証処理の最小のサンプル
-下記は、ロビー作成の例です。
+=== 認証処理の最小サンプル
+下記は、認証処理を実行する際の最低限のコードです。
 
-//emlist[認証処理サンプル][C]{
+//emlist[][C]{
 using System.Threading.Tasks;
 using UnityEngine;
 using Unity.Services.Core;
@@ -36,7 +36,7 @@ Unityサービスの初期化後、SignInAnonymouslyAsyncメソッドを非同�
 エラーハンドリングについては、下記の様にAuthenticationExceptionで認証処理自体のエラー、
 RequestFailedExceptionでリクエスト失敗時のエラーをハンドリングしてあげればいいです。
 
-//emlist[認証処理サンプル２][C]{
+//emlist[][C]{
 public class AuthenticationSample
 {
   public  async Task SignInAnonymouslyAsync()
@@ -66,7 +66,7 @@ public class AuthenticationSample
 
 また、認証サービスへのサインイン、サインアウトのイベントは下記の様に購読することができます。
 
-//emlist[認証処理のイベント購読][C]{
+//emlist[][C]{
 AuthenticationService.Instance.SignedIn += OnLoggedInHandler;
 AuthenticationService.Instance.SignedOut += OnLoggedOutHandler;
 //}
@@ -79,7 +79,7 @@ AuthenticationService.Instance.SignedOut += OnLoggedOutHandler;
 === ロビーの最小のサンプル
 下記は、ロビー作成/参加処理の例です。
 
-//emlist[ロビー作成サンプル][C]{
+//emlist[][C]{
 using Unity.Services.Lobbies;
 
 public class LobbySample
@@ -133,7 +133,7 @@ Lobbyデフォルトの設定では、30秒以上ハートビートが送られ�
 
 
 ロビーに参加する側は下記を実行します。
-//emlist[ロビー参加サンプル][C]{
+//emlist[][C]{
 public class LobbySample
 {
   private async UniTask JoinLobby()
@@ -163,7 +163,7 @@ QueryFilterは、キーバリュー型のデータとして持たせることが
 作成したロビーには、LobbyDataを持たせることができます。
 具体的なコードは下記の通りです。
 
-//emlist[LobbyData書き込み][C]{
+//emlist[][C]{
 public class LobbySample
 {
   public async Task UpdateLobbyData(string key, string value)
@@ -190,12 +190,13 @@ UpdateLobbyAsyncメソッドを使い、更新するロビーIDを指定してUp
 QueryFilterと同じように、キーバリュー型のデータを持たせることができるので各ゲームに応じて必要な情報を持たせることができます。
 なお、LobbyDataの書き込み権限はロビー作成者であるホストプレイヤーのみが持っています。
 
+@<embed>{|latex|\pagebreak }
 
 PlayersLinkでは、LobbyDataについてはJoinコードの読み書きでしか使用しないため、
 UpdateLobbyOptionsのデータとしては1つのデータしか持たせていません。
 下記の様にJoinコードを保存する処理で呼び出して使っています。
 
-//emlist[LobbyData書き込み(Joinコード)][C]{
+//emlist[][C]{
 public class LobbySample
 {
   public async Task SaveJoinCode(string joinCode)
@@ -208,7 +209,7 @@ public class LobbySample
 また、LobbyDataにアクセスする場合は、GetLobbyAsyncでロビー情報を取得して、LobbyDataを読み込みます。
 PlayersLinkでは下記の様にJoinコードを読み込んでいます。
 
-//emlist[LobbyData読み込み(Joinコード)][C]{
+//emlist[][C]{
 public class LobbySample
 {
   public string GetJoinCode()
@@ -233,7 +234,7 @@ Lobbyには、LobbyDataの他にPlayersというプロパティがあります�
 このPlayersはPlayerクラスのリストとなっており、PlayerにもDataを保持しておくことができます。
 下記はPlayerDataへの書き込み方法です。
 
-//emlist[PlayerData書き込み][C]{
+//emlist[][C]{
 public class LobbySample
 {
   public void CheckPlayerData()
@@ -289,7 +290,7 @@ LobbyのPlayersの中から書き込み対象のプレイヤーIDを指定して
 
 次に、下記はPlayerDataの読み込み方法です。
 
-//emlist[PlayerData読み込み][C]{
+//emlist[][C]{
 public class LobbySample
 {
   public void CheckPlayerData()
@@ -305,6 +306,39 @@ public class LobbySample
 //}
 
 このあたりはLobbyDataとやることはほとんど一緒でPlayersのDataにアクセスするだけです。
+
+== Lobby機能は不完全
+UGSのLobby機能は非常に優れていますが、私は開発していくなかで痒いところに手が届かないなという印象を受けました。というのも、Lobby機能ではロビー内で起こりうるイベントを監視できないからです。
+例えば、LobbyクラスにはOnJoinedやOnDiscconctedなどのイベント関数が公開されていません。
+そのため、プレイヤーがロビーに参加したかどうか切断したかどうかを検知する様な実装を各々で施す必要があります。
+その解決策としてPlayerDataを使いました。すでに上述したコードでタイムスタンプについて触れましたが、PlayersLinkではタイムスタンプの読み書きを行うことで
+ホスト・クライアントの入退室を検知してそれをイベント化しています。
+
+//indepimage[3_5_1_疎通確認][タイムスタンプを使った疎通確認]{
+  2023年11月時点で一般的なゲームのロビー画面
+//}
+
+プレイヤーは互いに最新のロビーデータを取得して、他のプレイヤーが書き込んだタイムスタンプを確認します。
+この時、タイムスタンプが一定時間経過していたらプレイヤーがタイムアウトして切断したと見なしてイベント通知を行います。
+
+このやり方は、Lobbyサーバーに何度もアクセスするので結果的にサーバーに負担を強いることになります。Unity側で想定しているやり方なのかは分かりません。
+しかしながら、LobbyDataとPlayerDataを使うとけっこう柔軟な処理が可能になります。
+PlayersLinkでもプレイヤーが準備できたかどうかを確認するReady機能もPlayerDataを使って実装しました。やっていることはタイムスタンプを使った疎通確認と基本的に一緒です。
+プレイヤーがReadyボタンを押したら、Ready-OK情報をPlayerDataに書き込みます。ホスト側で全員がReady-OKとなったことを検知したら次の処理に移行するという感じです。
+
+//indepimage[3_5_2_Ready機能][Ready機能]{
+  2023年11月時点で一般的なゲームのロビー画面
+//}
+
+次の処理というのは、具体的にはRelayサーバーへの接続処理のことです。
+こちらについて次章から書いていきます。
+
+#@#Relayについて書く？？
+#@#TODO:書かないなら消すこと
+公式ドキュメントのサンプルでは、ロビーに接続した直後にRelayサーバーの作成/参加を行うようになっており、そこからNetcode for GameObjectsを使ってプレイヤーの参加と切断を検知しているようです。
+確かにこのやり方でも問題はないし実装も簡単になります。
+
+
 
 
 

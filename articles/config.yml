@@ -6,7 +6,7 @@
 
 # この設定ファイルでサポートするRe:VIEWのバージョン番号。
 # major versionが違うときにはエラーを出す。
-review_version: 5.8
+review_version: 5.0
 
 # ほかの設定ファイルの継承を指定できる。同じパラメータに異なる値がある場合は、
 # 呼び出し元の値が優先される。
@@ -175,7 +175,7 @@ colophon: true
 
 # ソースコードハイライトを利用する (rouge,pygmentsには外部gemが必要)
 highlight:
-  html: "rouge"
+#  html: "rouge"
   latex: "listings"
 
 # カタログファイル名を指定する
@@ -198,12 +198,12 @@ highlight:
 
 # 図・表・コードリスト・数式のキャプション位置。
 # 値はtop（上）またはbottom（下）でデフォルトは以下のとおり
-caption_position:
-  image: bottom
-  table: bottom
-  list: bottom
-  emlist: bottom
-  equation: bottom
+#caption_position:
+#  image: bottom
+#  table: bottom
+#  list: bottom
+#  emlist: bottom
+#  equation: bottom
 
 # review-toc向けのヒント情報
 # (文字幅を考慮した行数計測には、別途unicode-eaw gemファイルが必要)

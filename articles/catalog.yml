@@ -9,17 +9,19 @@ CHAPS:
   # プロローグ
   - 1_1_1.article_prologue.re
 
+  - 2_1_1.article_setup.re
+
   # Lobbyについて
-  - 2_1_1.article_lobby.re
+  - 3_1_1.article_lobby.re
 
   # Relayについて
-  - 3_1_1.article_relay.re
+  - 4_1_1.article_relay.re
 
   # マッチメイキングについて
-  - 4_1_1.article_matchmaking.re
+  - 5_1_1.article_matchmaking.re
 
   # 最後に
-  - 5_1_1.article_ending.re
+  - 6_1_1.article_ending.re
 
 
 APPENDIX:
