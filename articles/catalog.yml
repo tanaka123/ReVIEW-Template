@@ -9,6 +9,7 @@ CHAPS:
   # プロローグ
   - 1_1_1.article_prologue.re
 
+  # 事前準備
   - 2_1_1.article_setup.re
 
   # Lobbyについて
