@@ -33,7 +33,8 @@ public class RelaySample
 #endif
         utp.SetRelayServerData(relayServerData);
         NetworkManager.Singleton.StartHost();
-    // ...中略...
+        // ...中略...
+    }
   }
 }
 //}
@@ -71,14 +72,16 @@ public class RelaySample
 #endif
         utp.SetRelayServerData(relayServerData);
         NetworkManager.Singleton.StartClient();
-    // ...中略...
+        // ...中略...
+    }
   }
 }
 //}
 
 
-クライアント側にLobbyDataなどの手段を使ってJoinコードを指定してJoinAllocationAsyncメソッドを実行しています。
-これによりアロケーション情報を取得することができます。あとはホスト側と同じようにプロトコルの設定を行い、
+クライアント側はLobbyDataを経由してJoinコードを取得します。(必ずしもLobbyDataとは限りませんが。)
+次にJoinコードを指定してJoinAllocationAsyncメソッドを実行しています。
+これによりアロケーション情報を取得することができます。あとはホスト側と同じようにプロトコル設定を行い、
 NetworkManagerのStartClientメソッドを実行することでホスト側の端末に接続することことができます。
 
 お疲れ様です！ここまでできれば、プレイヤー同士の接続は完了です。
