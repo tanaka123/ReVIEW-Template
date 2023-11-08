@@ -65,10 +65,10 @@ public class RelaySample
     {
 #if UNITY_WEBGL
         // WebGLの場合は、WSSを使う
-        var relayServerData = new RelayServerData(joinAllocation, WSSProtocol);
+        var relayServerData = new RelayServerData(joinAllocation, "wss");
         utp.UseWebSockets = true;
 # else
-        var relayServerData = new RelayServerData(joinAllocation, DTLSProtocol);
+        var relayServerData = new RelayServerData(joinAllocation, "dtls");
 #endif
         utp.SetRelayServerData(relayServerData);
         NetworkManager.Singleton.StartClient();

@@ -102,7 +102,7 @@ public class LobbySample
     while (true)
     {
       // 待機
-      await UniTask.Delay(delayMilliSeconds);
+      await Task.Delay(delayMilliSeconds);
 
       // ロビー接続を継続する
       try
@@ -111,7 +111,7 @@ public class LobbySample
       }
       catch (Exception e)
       {
-          Debug.LogError($"ハードビート失敗:{e}");
+          Debug.LogError($"ハートビート失敗:{e}");
           break;
       }
     }
@@ -136,7 +136,7 @@ Lobbyデフォルトの設定では、30秒以上ハートビートが送られ�
 //emlist[][C]{
 public class LobbySample
 {
-  private async UniTask JoinLobby()
+  private async Task JoinLobby()
   {
     await Lobbies.Instance.QuickJoinLobbyAsync();
   }
@@ -239,7 +239,7 @@ Lobbyには、LobbyDataの他にPlayersというプロパティがあります�
 //emlist[][C]{
 public class LobbySample
 {
-  public void CheckPlayerData()
+  public async void CheckPlayerData()
   private async Task WriteConnectionTimestamp(Lobby lobby, string playerId)
   {
       var playerData = GetPlayersData(lobby, playerId);
@@ -284,7 +284,7 @@ public class LobbySample
 }
 //}
 
-PlayersLinkではプレイヤーのタイムスタンプ情報をやり取りすることで疎通確認できるようするため、
+PlayersLinkではプレイヤーのタイムスタンプ情報をやり取りすることで疎通確認できるようにするため、
 上記の様なタイムスタンプの書き込み処理を行っています。(この背景などについては後述します。)
 LobbyのPlayersの中から書き込み対象のプレイヤーIDを指定してDataを得るため、GetPlayersDataメソッドの処理を行っています。
 コードが長くなっていますが、重複したデータを登録しない様に制御しています。

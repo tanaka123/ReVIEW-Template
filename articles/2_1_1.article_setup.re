@@ -38,15 +38,16 @@ UGSの登録時に使用したURLからログインして、LobbyとRelayを有�
  * Multiplayer Samples Utilities 1.6.1
  * ParrelSync 1.5.2
  * UniTask 2.4.1
+ * Starter Assets - Third Person Character Controller 1.1.5
 
 === ParrelSyncについて
-UnityEditorを複製してマルチプレイのテストを可能にするライブラリツールです。
+Unity Editorを複製してマルチプレイのテストを可能にするライブラリツールです。
 いちいちビルドしなくてもこのツールを使えば、簡単に複数人でアクセスを想定したテストができます。
 
 === WebGLでのビルドについて
-RelayでWebScketを使用します。そのため、Unityのシーン上でNetworkMangerのUse Web Scketを有効化する必要があります。
+RelayでWebSocketを使用します。そのため、Unityのシーン上でUnityTransportのUse Web Socketsを有効化する必要があります。
 PlayersLinkではこの辺りの処理を自動化しています。
-また、WebGLでは非同期処理ができません。サンプルではTaskを使用していますが、PlayersLinkではUniTaskに切り替えています。
+また、WebGLでは非同期処理が制限される場合があります。そのため、サンプルではTaskを使用していますが、PlayersLinkではUniTaskに切り替えています。
 
 === Netcode for GameObjectsとは
 Lobby,Relayを使用してプレイヤー同士を同期した後、
