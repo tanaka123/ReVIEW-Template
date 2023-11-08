@@ -230,6 +230,7 @@ public class LobbySample
 ===[/column]
 
 @<embed>{|latex|\pagebreak }
+
 == PlayerData
 Lobbyには、LobbyDataの他にPlayersというプロパティがあります。
 このPlayersはPlayerクラスのリストとなっており、PlayerにもDataを保持しておくことができます。
