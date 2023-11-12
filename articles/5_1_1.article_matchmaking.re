@@ -93,21 +93,14 @@ public class SampleNetworkVariable : NetworkBehaviour
 {
     private NetworkVariable<int> m_SomeValue = new NetworkVariable<int>(0);
 
-   public override void OnNetworkSpawn()
-   {
-       m_SomeValue.OnValueChanged += OnSomeValueChanged;
-   }
-
-    [ServerRpc]
-    private void TestServerRpc()
+    public override void OnNetworkSpawn()
     {
-    Debug.Log($"TestServerRpc");
+        m_SomeValue.OnValueChanged += OnSomeValueChanged;
     }
 
-    [ClientRpc]
-    private void TestClientRpc()
+    private void OnSomeValueChanged(int previous, int current)
     {
-    Debug.Log($"TestClientRpc");
+        Debug.Log($"変更前の値:{previous}…現在の値:{current}");
     }
 }
 //}
@@ -115,3 +108,8 @@ public class SampleNetworkVariable : NetworkBehaviour
 NetworkBehaviourを継承したコンポーネントをアタッチしたオブジェクトがスポーンされるとOnNetworkSpawnが呼び出されます。
 この時、NetworkVariable<int>型のm_SomeValueのイベントを購読することができ、m_SomeValueの値が変更されるたびに登録したメソッドを呼び出すことができます。
 ReactivePropertyに似たような挙動をするので、Webアプリ開発やUniRx使用した経験がある方にはなじみがあるかもしれません。
+NetworkVariableの用途としては、プレイヤーのHPやスコアの共有が考えられます。
+NetworkVariableとRPCの使い分けについて公式ドキュメントの記述によると、後から入室してきたプレイヤーに渡したい情報であればNetworkVariableを使い、
+ゲーム内の突発的なイベントについてはRPCを使うことを推奨しているようでした。
+
+

@@ -8,6 +8,8 @@
 == Relayの処理
 認証処理が完了したらRelayが使用可能になります。
 
+@<embed>{|latex|\pagebreak }
+
 === Relayの最小サンプル
 
 下記はRelayサーバー作成処理の例です。
@@ -51,6 +53,7 @@ NetworkManagerのStartHostを実行することで、実行した端末がサー
 
 #@#TODO:シーン上のNetworkManagerとUTPの構成を載せた方がいいか？
 
+@<embed>{|latex|\pagebreak }
 
 下記はRelayサーバー参加処理の例です。
 
